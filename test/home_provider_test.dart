@@ -691,24 +691,23 @@ void main() {
 
     final firstCells = container.read(provider).cells;
     expect(firstCells.single.showType, 384);
-    expect(
-      firstCells.single.children.single.items.map((i) => i.id),
-      isEmpty,
-    );
+    expect(firstCells.single.children.single.items.map((i) => i.id), isEmpty);
 
     await container.read(provider.notifier).loadMore();
 
     // 追加页的书出现在流区块的渲染列表里。
     final merged = container.read(provider).cells;
-    expect(
-      merged.single.children.single.items.map((i) => i.id),
-      ['next-1', 'next-2'],
-    );
+    expect(merged.single.children.single.items.map((i) => i.id), [
+      'next-1',
+      'next-2',
+    ]);
     // items 也照常追加（旧管线/去重语义不变）。
-    expect(
-      container.read(provider).items.map((i) => i.id),
-      ['first-1', 'first-2', 'next-1', 'next-2'],
-    );
+    expect(container.read(provider).items.map((i) => i.id), [
+      'first-1',
+      'first-2',
+      'next-1',
+      'next-2',
+    ]);
   });
 
   test('the combined feed keeps novels when recommendations fail', () async {

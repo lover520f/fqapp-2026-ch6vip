@@ -171,7 +171,10 @@ void main() {
 
     // 换内容，但视口原地不动，顶栏仍然在。
     expect(position.pixels, 0);
-    expect(tester.getRect(find.byType(HomeMasthead)).top, greaterThanOrEqualTo(0));
+    expect(
+      tester.getRect(find.byType(HomeMasthead)).top,
+      greaterThanOrEqualTo(0),
+    );
     expect(tester.takeException(), isNull);
   });
 

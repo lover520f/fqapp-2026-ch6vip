@@ -1692,7 +1692,9 @@ class _DramaPageState extends ConsumerState<DramaPage>
     }
     // 预览只是「下一页长这样」的预告，不接任何手势：它在当前内容下面，
     // 真接了点击会在拖动过程中误进播放页。
-    return IgnorePointer(child: ColoredBox(color: background, child: body));
+    return IgnorePointer(
+      child: ColoredBox(color: background, child: body),
+    );
   }
 
   /// 瀑布格的惰性副本：同样的列数、间距与卡片，但不滚动、不通知、不点击。
@@ -1793,7 +1795,11 @@ class _DramaPageState extends ConsumerState<DramaPage>
           crossAxisSpacing: 8,
           mainAxisSpacing: 16,
           // 海报约 5:7 + 片名 + 「分类·集数」；两列格片名可占两行。
-          childAspectRatio: wide ? .58 : columns == 2 ? 0.56 : (titleMaxLines >= 2 ? 0.47 : 0.52),
+          childAspectRatio: wide
+              ? .58
+              : columns == 2
+              ? 0.56
+              : (titleMaxLines >= 2 ? 0.47 : 0.52),
         ),
         itemCount: items.length,
         itemBuilder: (context, index) => _BrowseCard(
@@ -4660,7 +4666,8 @@ class _LocalListState extends State<_LocalList> {
           // 桌面端跟看剧/漫剧同口径铺列（[dramaDesktopColumns]，行距也放到
           // 16）；手机保持官方的双列 8dp。原先这里恒写 2 列，桌面上两列会被
           // 拉到近 700dp 宽，和隔壁频道完全两种排版。
-          final desktopGrid = isWindowsDesktop || MediaQuery.sizeOf(context).width >= 840;
+          final desktopGrid =
+              isWindowsDesktop || MediaQuery.sizeOf(context).width >= 840;
           final columns = desktopGrid ? dramaDesktopColumns(context) : 3;
           final body = filtered.isEmpty
               ? empty

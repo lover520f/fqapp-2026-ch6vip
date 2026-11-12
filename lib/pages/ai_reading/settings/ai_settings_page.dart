@@ -254,8 +254,9 @@ class _AiSettingsPageState extends State<AiSettingsPage> {
   }
 
   Future<void> _openProviders() async {
-    await Navigator.of(context)
-        .push<bool>(MaterialPageRoute(builder: (_) => const AiProviderPage()));
+    await Navigator.of(
+      context,
+    ).push<bool>(MaterialPageRoute(builder: (_) => const AiProviderPage()));
     if (!mounted) return;
     final global = _settings.global;
     var profile = _settings.provider(global.providerId);

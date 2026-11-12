@@ -88,8 +88,7 @@ void main() {
     store = _StubStore(temp);
     downloader = AudioDownloader(
       store: store,
-      resolve: (bookId, itemId, toneId) async =>
-          throw StateError('本用例不触发真实下载'),
+      resolve: (bookId, itemId, toneId) async => throw StateError('本用例不触发真实下载'),
     );
   });
 
